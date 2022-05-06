@@ -1,0 +1,32 @@
+*{
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.main{
+    width: fit-content;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.head{
+    text-align: center;
+}
+
+.foot{
+    text-align: center;
+    color: rgb(92, 231, 0);
+    text-shadow: 2px 2px #5e5e5e;
+}
+
+.image{
+    text-align: center;
+}
