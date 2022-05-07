@@ -1,3 +1,7 @@
+<?php
+   session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,32 +32,11 @@
                 <tbody class="tbody">
                     <tr>
                         <td>1</td>
-                        <td>Bahaa</td>
-                        <td>bahaa@mail.com</td>
-                        <td>1a2s3f4v5h6</td>
-                        <td>04/05/2022</td>
+                        <td><?php echo $_SESSION['record']['first_name']." ".$_SESSION['record']['middle_name']." ".$_SESSION['record']['last_name']." ".$_SESSION['record']['family_name']; ?></td>
+                        <td><?php echo $_SESSION['record']['email']; ?></td>
+                        <td><?php echo $_SESSION['record']['password']; ?></td>
+                        <td><?php echo $_SESSION['now']; ?></td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Bahaa</td>
-                        <td>bahaa@mail.com</td>
-                        <td>1a2s3f4v5h6</td>
-                        <td>04/05/2022</td>
-                    </tr>
-                    <tr>
-                    <td>1</td>
-                    <td>Bahaa</td>
-                    <td>bahaa@mail.com</td>
-                    <td>1a2s3f4v5h6</td>
-                    <td>04/05/2022</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Bahaa</td>
-                    <td>bahaa@mail.com</td>
-                    <td>1a2s3f4v5h6</td>
-                    <td>04/05/2022</td>
-                </tr>
                 </tbody>
             </table>
         </div>

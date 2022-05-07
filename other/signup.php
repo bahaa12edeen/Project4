@@ -15,34 +15,35 @@
     }
 
    
-    $jo = "abc test";
     if(isset($_POST["submit"])){
 
-        $fname =  $_POST["fname"];
-        $mname =  $_POST["mname"];
-        $lname =  $_POST["lname"];
-        $yname =  $_POST["yname"];
-        $email =  $_POST["email"];
-        $password =  $_POST["password"];
-        $cpassword =  $_POST["cpassword"];
-        $mobile =  $_POST["mobile"];
-        $date =  $_POST["date"];
+        $_SESSION['fname']  = $_POST["fname"];
+        $_SESSION['mname']  = $_POST["mname"];
+        $_SESSION['lname']  = $_POST["lname"];
+        $_SESSION['yname']  = $_POST["yname"];
+        $_SESSION['email']  = $_POST["email"];
+        $_SESSION['password']  = $_POST["password"];
+        $_SESSION['cpassword']  = $_POST["cpassword"];
+        $_SESSION['mobile']  = $_POST["mobile"];
+        $_SESSION['date']  = $_POST["date"];
+
+        $fname =  $_SESSION['fname'];
+        $mname =  $_SESSION['mname'];
+        $lname =  $_SESSION['lname'];
+        $yname =  $_SESSION['yname'];
+        $email =  $_SESSION['email'];
+        $password =  $_SESSION['password'];
+        $cpassword =  $_SESSION['cpassword'];
+        $mobile =  $_SESSION['mobile'];
+        $date =  $_SESSION['date'];
 
 
         $reg1 = "/^[A-Za-z]+$/";//name
         $reg2 = "/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/";//email re
         $reg3 = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]){8,100}/";//password
         $reg4 = "/^[\d]{14,100}+$/";//mobile re
-        // $reg5 = "/\w+@\w+.\w+/";
-        // $reg6 = "/\w+@\w+.\w+/";
-        // $reg7 = "/\w+@\w+.\w+/";
-        // $reg8 = "/\w+@\w+.\w+/";
-        // $reg9 = "/\w+@\w+.\w+/";
 
 
-
-
-        $mesg9 = '<div id="ferr"><div class="error"> <i class="fa-solid fa-circle-exclamation"></i> &nbsp; Please enter your birth date</div></div>';
 
 
         if(preg_match_all($reg1, $fname)){
@@ -99,16 +100,32 @@
             $mesg9 = '<div id="ferr"><div class="error"> <i class="fa-solid fa-circle-exclamation"></i> &nbsp; Please enter your birth date </div></div>';
         }
 
-        /********************************************************** */
+        if($mesg1 == '' & $mesg2 == '' & $mesg3 == '' & $mesg4 == '' & $mesg5 == '' & $mesg6 == '' & $mesg7 == '' & $mesg8 == '' & $mesg9 == ''){
+            $_SESSION['record']=array(
+                'first_name'=> $fname,
+                'middle_name'=> $mname,
+                'last_name'=>$lname,
+                'family_name'=> $yname,
+                'email'=> $email,
+                'password'=> $password,
+                'password_confirm'=> $cpassword,
+                'mobile'=> $mobile,
+                'date'=>$date
+            );
+    
+            header('location: login.php');
+        }
+
+        /***********************************************************/
 
         $bdate = new DateTime($date);
         $now   = new DateTime('today');
       
-        $year = $bdate->diff($now)->y;
+        $year = $bdate -> diff($now) -> y;
        
         // echo "your age is: " . $year;
 
-        /********************************************************** */
+        /***********************************************************/
 
 
 

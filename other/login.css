@@ -25,7 +25,7 @@ body{
 .login{
     width: 100%;
     text-align: center;
-    margin: 30px 5px 10px;
+    margin: 30px 0px;
     padding: 15px 40px;
     user-select: none;
     cursor: pointer;
@@ -54,4 +54,13 @@ input{
 .footer{
     width: fit-content;
     margin: 10px auto;
+}
+
+.error{
+    /* display: none; */
+    margin-top: 7px;
+    text-align: center;
+    background-color: rgba(255, 0, 0, 0.518);
+    padding: 7px 12px;
+    max-width: 394px;
 }

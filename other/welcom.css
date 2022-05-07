@@ -27,6 +27,11 @@ body{
     text-shadow: 2px 2px #5e5e5e;
 }
 
+.footer{
+    margin: auto;
+    text-align: center;
+}
+
 .image{
     text-align: center;
 }
