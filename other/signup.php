@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if(!(isset($_GET["submit"]))){
+    if(!(isset($_POST["submit"]))){
         $mesg1 = '';
         $mesg2 = '';
         $mesg3 = '';
@@ -12,38 +12,35 @@
         $mesg8 = '';
         $mesg9 = '';
 
+
+        $info = ['first_name'=> "bahaa", 'middle_name'=> "aldeen", 'last_name'=> "mohammed", 'family_name'=> "alnabulsi", 'email'=> "admin@mail.com", 'password'=> "od#I(m7^7u5qqv0kxO", 'password_confirm'=> "od#I(m7^7u5qqv0kxO", 'mobile'=> "96325874123698", 'date'=> "1999-05-05", 'now'=> "not yet"];
+
+        if($_SESSION["record"]==null){
+            $_SESSION["record"] = array();
+            array_push($_SESSION["record"],$info);
+        }
+
     }
 
+    // print_r($_SESSION["record"]) ;
    
     if(isset($_POST["submit"])){
 
-        $_SESSION['fname']  = $_POST["fname"];
-        $_SESSION['mname']  = $_POST["mname"];
-        $_SESSION['lname']  = $_POST["lname"];
-        $_SESSION['yname']  = $_POST["yname"];
-        $_SESSION['email']  = $_POST["email"];
-        $_SESSION['password']  = $_POST["password"];
-        $_SESSION['cpassword']  = $_POST["cpassword"];
-        $_SESSION['mobile']  = $_POST["mobile"];
-        $_SESSION['date']  = $_POST["date"];
-
-        $fname =  $_SESSION['fname'];
-        $mname =  $_SESSION['mname'];
-        $lname =  $_SESSION['lname'];
-        $yname =  $_SESSION['yname'];
-        $email =  $_SESSION['email'];
-        $password =  $_SESSION['password'];
-        $cpassword =  $_SESSION['cpassword'];
-        $mobile =  $_SESSION['mobile'];
-        $date =  $_SESSION['date'];
+        $fname = $_POST["fname"];
+        $mname = $_POST["mname"];
+        $lname = $_POST["lname"];
+        $yname = $_POST["yname"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        $cpassword = $_POST["cpassword"];
+        $mobile = $_POST["mobile"];
+        $date = $_POST["date"];
 
 
         $reg1 = "/^[A-Za-z]+$/";//name
         $reg2 = "/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/";//email re
         $reg3 = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]){8,100}/";//password
         $reg4 = "/^[\d]{14,100}+$/";//mobile re
-
-
 
 
         if(preg_match_all($reg1, $fname)){
@@ -99,19 +96,14 @@
         }else{
             $mesg9 = '<div id="ferr"><div class="error"> <i class="fa-solid fa-circle-exclamation"></i> &nbsp; Please enter your birth date </div></div>';
         }
-
+//&&
         if($mesg1 == '' & $mesg2 == '' & $mesg3 == '' & $mesg4 == '' & $mesg5 == '' & $mesg6 == '' & $mesg7 == '' & $mesg8 == '' & $mesg9 == ''){
-            $_SESSION['record']=array(
-                'first_name'=> $fname,
-                'middle_name'=> $mname,
-                'last_name'=>$lname,
-                'family_name'=> $yname,
-                'email'=> $email,
-                'password'=> $password,
-                'password_confirm'=> $cpassword,
-                'mobile'=> $mobile,
-                'date'=>$date
-            );
+            
+
+            $info = ['first_name'=> $fname, 'middle_name'=> $mname, 'last_name'=> $lname, 'family_name'=> $yname, 'email'=> $email, 'password'=> $password, 'password_confirm'=> $cpassword, 'mobile'=> $mobile, 'date'=> $date, 'now'=> "not yet"];
+
+            array_push($_SESSION["record"],$info);
+
     
             header('location: login.php');
         }
@@ -124,20 +116,6 @@
         $year = $bdate -> diff($now) -> y;
        
         // echo "your age is: " . $year;
-
-        /***********************************************************/
-
-
-
-
-        // $x=$_SESSION["x"];
-        // if($_SESSION["x"]){
-        //     $jo = "DONE!";
-        //     $_SESSION["x"]=0;
-        // }else{
-        //     $jo = "abc test!";
-        //     $_SESSION["x"]=1;
-        // }
     }
 
 

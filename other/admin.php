@@ -30,15 +30,30 @@
                 <!-- <th></th> -->
                 </tr>
                 <tbody class="tbody">
-                    <tr>
+                    <!-- <tr>
                         <td>1</td>
-                        <td><?php echo $_SESSION['record']['first_name']." ".$_SESSION['record']['middle_name']." ".$_SESSION['record']['last_name']." ".$_SESSION['record']['family_name']; ?></td>
-                        <td><?php echo $_SESSION['record']['email']; ?></td>
-                        <td><?php echo $_SESSION['record']['password']; ?></td>
-                        <td><?php echo $_SESSION['now']; ?></td>
-                    </tr>
+                        <td></?php echo $_SESSION['record']['first_name'].' '.$_SESSION['record']['middle_name'].' '.$_SESSION['record']['last_name'].' '.$_SESSION['record']['family_name']; ?></td>
+                        <td></?php echo $_SESSION['record']['email']; ?></td>
+                        <td></?php echo $_SESSION['record']['password']; ?></td>
+                        <td></?php echo $_SESSION['now']; ?></td>
+                    </tr> -->
+                    <?php
+                        for($i=0; $i < (count($_SESSION['record'])); $i++){
+                            echo "
+                                      <tr>
+                                          <td>". ($i+1) ."</td>
+                                          <td>". $_SESSION['record'][$i]['first_name'].' '.$_SESSION['record'][$i]['middle_name'].' '.$_SESSION['record'][$i]['last_name'].' '.$_SESSION['record'][$i]['family_name'] ."</td>
+                                          <td>". $_SESSION['record'][$i]['email'] ."</td>
+                                          <td>". $_SESSION['record'][$i]['password'] ."</td>
+                                          <td>". $_SESSION['record'][$i]['now'] ."</td>
+                                      </tr>";
+                        }
+                    ?>
                 </tbody>
             </table>
+        </div>
+        <div>
+            <a class="out" href="../index.php">LogOut</a>
         </div>
     </div>
 </body>

@@ -6,22 +6,45 @@ if(!(isset($_GET["submit"]))){
 }
 
 if(isset($_POST["submit"])){
+
+    // $check = null;
+    // $check = $i;
+
     $email1  = $_POST["email"];
-    $email2 =  $_SESSION['record']['email'];
-
     $password1  = $_POST["password"];
-    $password2 =  $_SESSION['record']['password'];
 
-    if($email1 == $email2 & $password1 == $password2){
-        header('location: welcome.php');
-        $mesg = '';
-    }else{
-        $mesg = '<div id="ferr"><div class="error"> <i class="fa-solid fa-circle-exclamation"></i> &nbsp; email or password not correct </div></div>';
+    for($i=0; $i < (count($_SESSION['record'])); $i++){
+        if($email1 == $_SESSION['record'][$i]['email'] && $password1 == $_SESSION['record'][$i]['password']){
+
+            if($email1 == "admin@mail.com" && $password1 == "od#I(m7^7u5qqv0kxO"){
+                $_SESSION['record'][$i]['now'] = date("Y/m/d");
+                header('location: admin.php');
+            }else{
+                $email2 = $_SESSION['record'][$i]['email'];
+                $password2 = $_SESSION['record'][$i]['password'];
+                $_SESSION['record'][$i]['now'] = date("Y/m/d");
+    
+                $mesg = '';
+    
+                header('location: welcome.php?i='.$i);
+            }
+        }else{
+            $mesg = '<div id="ferr"><div class="error"> <i class="fa-solid fa-circle-exclamation"></i> &nbsp; email or password not correct </div></div>';
+        }
     }
+
+
+
+    // if($email1 == $email2 & $password1 == $password2){
+    //     header('location: welcome.php');
+    //     $mesg = '';
+    // }else{
+    //     $mesg = '<div id="ferr"><div class="error"> <i class="fa-solid fa-circle-exclamation"></i> &nbsp; email or password not correct </div></div>';
+    // }
 }
 
 // echo $_SESSION['record']['email'] . " // " . $_SESSION['record']['password'];
-$_SESSION['now'] = date("Y/m/d");
+
 
 ?>
 
@@ -73,7 +96,8 @@ $_SESSION['now'] = date("Y/m/d");
         <p>
             <hr>
             <?php 
-                echo $_SESSION['record']['email'] . " // " . $_SESSION['record']['password'];
+                echo $_SESSION['record'][count($_SESSION['record'])-1]['email'] . " // " . $_SESSION['record'][count($_SESSION['record'])-1]['password'];
+                echo "<br><br><br> admin@mail.com // od#I(m7^7u5qqv0kxO";
              ?>
         </p>
     </div>

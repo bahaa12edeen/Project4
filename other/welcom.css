@@ -35,3 +35,14 @@ body{
 .image{
     text-align: center;
 }
+
+.out{
+    display: block;
+    padding: 10px 20px;
+    color: white;
+    background-color: brown;
+    font-size: 25px;
+    width: fit-content;
+    margin: 20px auto;
+    text-decoration: none;
+}
